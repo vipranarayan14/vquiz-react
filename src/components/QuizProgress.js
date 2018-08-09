@@ -6,7 +6,7 @@ export const QuizProgress = props =>
   (props.quizState === 'progress' || props.quizState === 'check') &&
 
   <div>
-    <span>{props.currentQuestionNo}</span> / 
+    <span>{props.currQuestionNo}</span> / 
     <span>{props.totalQuestions}</span>
   </div>
 
@@ -15,7 +15,7 @@ export const QuizProgress = props =>
 QuizProgress.propTypes = {
 
   quizState: PropTypes.string.isRequired,
-  currentQuestionNo: PropTypes.number.isRequired,
+  currQuestionNo: PropTypes.number.isRequired,
   totalQuestions: PropTypes.number.isRequired
 
 };

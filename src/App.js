@@ -15,11 +15,10 @@ export class App extends React.Component {
 
     this.state = {
       quizData,
-      currentQuestionNo: 1,
+      currQuestionNo: 1,
       totalQuestions: quizData.questions.length,
       quizState: 'begin',
-      isFirstQuestion: false,
-      isLastQuestion: false,
+      questionState: '',
       score: 0,
       question: '',
       choices: []
@@ -37,21 +36,15 @@ export class App extends React.Component {
 
     this.setState(prevState =>
 
-      prevState.currentQuestionNo === 1 ?
+      prevState.currQuestionNo === 1 ?
 
-      { isFirstQuestion: true } :
+      { questionState: 'first' } :
 
-      { isFirstQuestion: false }
+      prevState.currQuestionNo === this.state.totalQuestions ?
 
-    );
+      { questionState: 'last' } :
 
-    this.setState(prevState =>
-
-      prevState.currentQuestionNo === this.state.totalQuestions ?
-
-      { isLastQuestion: true } :
-
-      { isLastQuestion: false }
+      { questionState: 'middle' }
 
     );
 
@@ -73,11 +66,11 @@ export class App extends React.Component {
 
     this.setState(prevState => {
 
-      if (this.state.currentQuestionNo !== 1)
+      if (this.state.currQuestionNo !== 1)
 
         return {
 
-          currentQuestionNo: prevState.currentQuestionNo - 1
+          currQuestionNo: prevState.currQuestionNo - 1
 
         }
 
@@ -91,11 +84,11 @@ export class App extends React.Component {
 
     this.setState(prevState => {
 
-      if (this.state.currentQuestionNo !== this.state.totalQuestions)
+      if (this.state.currQuestionNo !== this.state.totalQuestions)
 
         return {
 
-          currentQuestionNo: prevState.currentQuestionNo + 1
+          currQuestionNo: prevState.currQuestionNo + 1
 
         }
 
@@ -122,7 +115,7 @@ export class App extends React.Component {
     this.setState({
 
       quizState: 'check',
-      currentQuestionNo: 1
+      currQuestionNo: 1
 
     });
 
@@ -141,7 +134,7 @@ export class App extends React.Component {
 
         <QuizProgress
           quizState={this.state.quizState}
-          currentQuestionNo={this.state.currentQuestionNo}
+          currQuestionNo={this.state.currQuestionNo}
           totalQuestions={this.state.totalQuestions}
         />
 
@@ -149,8 +142,7 @@ export class App extends React.Component {
 
         <QuizNav 
           quizState={this.state.quizState}
-          isFirstQuestion={this.state.isFirstQuestion}
-          isLastQuestion={this.state.isLastQuestion}
+          questionState={this.state.questionState}
           handleStartClick={this.handleStartClick}
           handleBackClick={this.handleBackClick}
           handleNextClick={this.handleNextClick}

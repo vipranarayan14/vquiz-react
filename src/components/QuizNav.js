@@ -12,9 +12,9 @@ export const QuizNav = props => {
   return (
     <div className="quiz-nav">
       { props.quizState === 'begin' &&  start}
-      { ((props.quizState === 'progress' || props.quizState === 'check') && !props.isFirstQuestion) &&  back}
-      { props.quizState === 'progress' && (!props.isLastQuestion ?  next : submit) }
-      { props.quizState === 'check' && (!props.isLastQuestion ?  next : null) }
+      { ['progress', 'check'].includes(props.quizState) && props.questionState !== 'first' &&  back }
+      { ['progress', 'check'].includes(props.quizState) && props.questionState !== 'last' &&  next }
+      { props.quizState === 'progress' && props.questionState === 'last' && submit }
       { props.quizState === 'end' && check}
     </div>
   );
@@ -23,8 +23,7 @@ export const QuizNav = props => {
 QuizNav.propTypes = {
 
   quizState: PropTypes.string.isRequired,
-  isFirstQuestion: PropTypes.bool.isRequired,
-  isLastQuestion: PropTypes.bool.isRequired,
+  questionState: PropTypes.string.isRequired,
   handleStartClick: PropTypes.func.isRequired,
   handleBackClick: PropTypes.func.isRequired,
   handleNextClick: PropTypes.func.isRequired,
