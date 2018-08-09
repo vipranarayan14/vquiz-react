@@ -20,8 +20,8 @@ export class App extends React.Component {
       quizState: 'begin',
       questionState: '',
       score: 0,
-      question: '',
-      choices: []
+      question: quizData.questions[0].question,
+      choices: quizData.questions[0].choices
     };
 
     this.handleStartClick = this.handleStartClick.bind(this);
@@ -66,13 +66,19 @@ export class App extends React.Component {
 
     this.setState(prevState => {
 
-      if (this.state.currQuestionNo !== 1)
+      const currQuestionNo = prevState.currQuestionNo - 1;
+
+      if (this.state.currQuestionNo !== 1) {
 
         return {
 
-          currQuestionNo: prevState.currQuestionNo - 1
+          currQuestionNo,
+          question: this.state.quizData.questions[currQuestionNo].question,
+          choices: this.state.quizData.questions[currQuestionNo].choices
 
         }
+
+      }
 
     });
 
@@ -84,13 +90,19 @@ export class App extends React.Component {
 
     this.setState(prevState => {
 
-      if (this.state.currQuestionNo !== this.state.totalQuestions)
+      const currQuestionNo = prevState.currQuestionNo + 1;
+
+      if (this.state.currQuestionNo !== this.state.totalQuestions) {
 
         return {
 
-          currQuestionNo: prevState.currQuestionNo + 1
+          currQuestionNo,
+          question: this.state.quizData.questions[currQuestionNo].question,
+          choices: this.state.quizData.questions[currQuestionNo].choices
 
         }
+
+      }
 
     });
 
@@ -138,7 +150,12 @@ export class App extends React.Component {
           totalQuestions={this.state.totalQuestions}
         />
 
-        <QuizContent />
+        <QuizContent 
+          quizState={this.state.quizState}
+          currQuestionNo={this.state.currQuestionNo}
+          question={this.state.question} 
+          choices={this.state.choices}
+        />
 
         <QuizNav 
           quizState={this.state.quizState}
