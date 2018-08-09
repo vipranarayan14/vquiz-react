@@ -24,7 +24,7 @@ export const QuizContent = props =>
 QuizContent.propTypes = {
 
   quizState: PropTypes.string.isRequired,
-  currQuestionNo: PropTypes.number.isRequired,
+  questionId: PropTypes.number.isRequired,
   question: PropTypes.string.isRequired,
   choices: PropTypes.array.isRequired
 

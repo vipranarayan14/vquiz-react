@@ -15,7 +15,7 @@ export class App extends React.Component {
 
     this.state = {
       quizData,
-      currQuestionNo: 1,
+      questionId: 0,
       totalQuestions: quizData.questions.length,
       quizState: 'begin',
       questionState: '',
@@ -36,11 +36,11 @@ export class App extends React.Component {
 
     this.setState(prevState =>
 
-      prevState.currQuestionNo === 1 ?
+      prevState.questionId === 0 ?
 
       { questionState: 'first' } :
 
-      prevState.currQuestionNo === this.state.totalQuestions ?
+      prevState.questionId === (this.state.totalQuestions - 1) ?
 
       { questionState: 'last' } :
 
@@ -66,15 +66,15 @@ export class App extends React.Component {
 
     this.setState(prevState => {
 
-      const currQuestionNo = prevState.currQuestionNo - 1;
+      const questionId = prevState.questionId - 1;
 
-      if (this.state.currQuestionNo !== 1) {
+      if (this.state.questionId !== 0) {
 
         return {
 
-          currQuestionNo,
-          question: this.state.quizData.questions[currQuestionNo].question,
-          choices: this.state.quizData.questions[currQuestionNo].choices
+          questionId,
+          question: this.state.quizData.questions[questionId].question,
+          choices: this.state.quizData.questions[questionId].choices
 
         }
 
@@ -90,15 +90,15 @@ export class App extends React.Component {
 
     this.setState(prevState => {
 
-      const currQuestionNo = prevState.currQuestionNo + 1;
+      const questionId = prevState.questionId + 1;
 
-      if (this.state.currQuestionNo !== this.state.totalQuestions) {
+      if (this.state.questionId !== (this.state.totalQuestions - 1)) {
 
         return {
 
-          currQuestionNo,
-          question: this.state.quizData.questions[currQuestionNo].question,
-          choices: this.state.quizData.questions[currQuestionNo].choices
+          questionId,
+          question: this.state.quizData.questions[questionId].question,
+          choices: this.state.quizData.questions[questionId].choices
 
         }
 
@@ -127,7 +127,7 @@ export class App extends React.Component {
     this.setState({
 
       quizState: 'check',
-      currQuestionNo: 1
+      questionId: 0
 
     });
 
@@ -146,13 +146,13 @@ export class App extends React.Component {
 
         <QuizProgress
           quizState={this.state.quizState}
-          currQuestionNo={this.state.currQuestionNo}
+          questionId={this.state.questionId}
           totalQuestions={this.state.totalQuestions}
         />
 
         <QuizContent 
           quizState={this.state.quizState}
-          currQuestionNo={this.state.currQuestionNo}
+          questionId={this.state.questionId}
           question={this.state.question} 
           choices={this.state.choices}
         />
