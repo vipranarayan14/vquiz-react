@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { QuizScorePage } from './QuizScorePage';
+import { QuizStartPage } from './QuizStartPage';
 
 export const QuizContent = props =>
 
-  (props.quizState === 'progress' || props.quizState === 'check') &&
+  (props.quizState === 'progress' || props.quizState === 'check') ?
 
   <div className="quiz-content">
     <h3>{props.question}</h3>
@@ -31,6 +33,9 @@ export const QuizContent = props =>
     </div>
   </div>
 
+  : (props.quizState === 'begin') ? <QuizStartPage content={props.intro}/> 
+  : (props.quizState === 'end') ? <QuizScorePage score={props.score} totalQuestions={props.totalQuestions}/>
+  : null
 ;
 
 QuizContent.propTypes = {
@@ -40,6 +45,9 @@ QuizContent.propTypes = {
   question: PropTypes.string.isRequired,
   choices: PropTypes.array.isRequired,
   answers: PropTypes.object.isRequired,
-  handleChoiceClick: PropTypes.func.isRequired
+  handleChoiceClick: PropTypes.func.isRequired,
+  intro: PropTypes.string.isRequired,
+  score: PropTypes.number.isRequired,
+  totalQuestions: PropTypes.number.isRequired
 
 };

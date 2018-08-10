@@ -2,6 +2,8 @@ export const quizData = {
 
   title: 'On Sandhi\'s in Sanskrit',
 
+  intro: 'This is a quiz on Sandhi\'s in Sanskrit',
+
   questions: [
 
     {

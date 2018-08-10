@@ -15,6 +15,7 @@ export class App extends React.Component {
 
     this.state = {
       quizData,
+      intro: quizData.intro,
       questionId: 0,
       totalQuestions: quizData.questions.length,
       quizState: 'begin',
@@ -49,6 +50,31 @@ export class App extends React.Component {
       { questionState: 'middle' }
 
     );
+
+  }
+
+  setScore() {
+
+    let score = 0;
+
+    Object.keys(this.state.answers).forEach(key => {
+
+        const question = this.state.quizData.questions[key - 1];
+        const userAnswer = this.state.answers[key];
+
+        if (question) {
+
+          score = Number(userAnswer) === Number(question.answer) ? score + 1 : score;
+
+        }
+
+      }
+
+    );
+
+    this.setState({
+      score
+    })
 
   }
 
@@ -120,7 +146,7 @@ export class App extends React.Component {
 
     });
 
-    this.setQuestionState();
+    this.setScore();
 
   }
 
@@ -129,11 +155,12 @@ export class App extends React.Component {
     this.setState({
 
       quizState: 'check',
-      questionId: 0
+      questionState: 'first',
+      questionId: 0,
+      question: quizData.questions[0].question,
+      choices: quizData.questions[0].choices,
 
     });
-
-    this.setQuestionState();
 
   }
 
@@ -181,6 +208,9 @@ export class App extends React.Component {
           choices={this.state.choices}
           answers={this.state.answers}
           handleChoiceClick={this.handleChoiceClick}
+          intro={this.state.intro}
+          score={this.state.score}
+          totalQuestions={this.state.totalQuestions}
         />
 
         <QuizNav 
