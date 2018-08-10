@@ -5,15 +5,27 @@ export const QuizContent = props =>
 
   (props.quizState === 'progress' || props.quizState === 'check') &&
 
-  <div>
+  <div className="quiz-content">
     <h3>{props.question}</h3>
-    <div>
+    <div className="quiz-question">
       {props.choices.map((choice, index) => {
         return (
-          <label key={index}>
-            <input type="radio" value={index + 1} />
-            {choice}
-          </label>
+          <div 
+            className="quiz-choice" 
+            key={`q-${props.questionId}-i-${index}`}
+            onChange={props.handleChoiceClick}
+          >
+            <label>
+              <input 
+                type="radio" 
+                value={index + 1} 
+                name={`q-${props.questionId}-choice`}
+                data-questionid={props.questionId + 1}
+                defaultChecked={(index + 1) === Number(props.answers[props.questionId + 1])}
+              />
+              {choice}
+            </label>
+          </div>
         );
       })}
     </div>
@@ -26,6 +38,8 @@ QuizContent.propTypes = {
   quizState: PropTypes.string.isRequired,
   questionId: PropTypes.number.isRequired,
   question: PropTypes.string.isRequired,
-  choices: PropTypes.array.isRequired
+  choices: PropTypes.array.isRequired,
+  answers: PropTypes.object.isRequired,
+  handleChoiceClick: PropTypes.func.isRequired
 
 };

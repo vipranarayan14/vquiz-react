@@ -21,7 +21,8 @@ export class App extends React.Component {
       questionState: '',
       score: 0,
       question: quizData.questions[0].question,
-      choices: quizData.questions[0].choices
+      choices: quizData.questions[0].choices,
+      answers: {}
     };
 
     this.handleStartClick = this.handleStartClick.bind(this);
@@ -29,6 +30,7 @@ export class App extends React.Component {
     this.handleNextClick = this.handleNextClick.bind(this);
     this.handleSubmitClick = this.handleSubmitClick.bind(this);
     this.handleCheckClick = this.handleCheckClick.bind(this);
+    this.handleChoiceClick = this.handleChoiceClick.bind(this);
 
   }
 
@@ -135,6 +137,28 @@ export class App extends React.Component {
 
   }
 
+  handleChoiceClick(e) {
+
+    const questionId = e.target.getAttribute('data-questionid');
+    const choice = e.target.getAttribute('value');
+
+    this.setState(prevState => (
+
+        {
+          answers: Object.assign({},
+
+            prevState.answers,
+
+            prevState.answers[questionId] = choice
+          )
+        }
+
+      )
+
+    );
+
+  }
+
   render() {
 
     return (
@@ -155,6 +179,8 @@ export class App extends React.Component {
           questionId={this.state.questionId}
           question={this.state.question} 
           choices={this.state.choices}
+          answers={this.state.answers}
+          handleChoiceClick={this.handleChoiceClick}
         />
 
         <QuizNav 
