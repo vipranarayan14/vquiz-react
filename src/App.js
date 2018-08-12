@@ -28,7 +28,7 @@ export class App extends React.Component {
       score: 0,
       question: quizData.questions[0].question,
       choices: quizData.questions[0].choices,
-      answers: {}
+      answers: new Map()
     };
 
     this.handleStartClick = handleStartClick.bind(this)();
@@ -64,12 +64,12 @@ export class App extends React.Component {
 
     Object.keys(this.state.answers).forEach(key => {
 
-        const question = quizData.questions[key - 1];
-        const userAnswer = this.state.answers[key];
+        const question = quizData.questions[key];
+        const userAnswer = this.state.answers.get(key);
 
         if (question) {
 
-          score = Number(userAnswer) === Number(question.answer) ? score + 1 : score;
+          score = userAnswer === question.answer ? score + 1 : score;
 
         }
 
@@ -99,10 +99,10 @@ export class App extends React.Component {
         />
 
         <QuizContent 
-          {...this.state}
           handleChoiceClick={this.handleChoiceClick}
           intro={quizData.intro}
           totalQuestions={totalQuestions}
+          {...this.state}
         />
 
         <QuizNav 
