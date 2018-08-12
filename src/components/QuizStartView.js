@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 
 export const QuizStartView = props =>
 
-  <p>{props.intro}</p>;
+  <div className="quiz-start-view">
+    <p>{props.intro}</p>
+  </div>
+
+;
 
 QuizStartView.propTypes = {
 
