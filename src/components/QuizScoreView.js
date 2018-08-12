@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const QuizScorePage = props =>
+export const QuizScoreView = props =>
 
   <div className="quiz-score-page">
     <h3>Congratulations!</h3>
@@ -10,7 +10,7 @@ export const QuizScorePage = props =>
 
 ;
 
-QuizScorePage.propTypes = {
+QuizScoreView.propTypes = {
 
   score: PropTypes.number.isRequired,
   totalQuestions: PropTypes.number.isRequired,

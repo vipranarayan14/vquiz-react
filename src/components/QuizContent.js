@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { QuizStartPage } from './QuizStartView';
+import { QuizStartView } from './QuizStartView';
 import { QuizQuestionsView } from './QuizQuestionsView';
-import { QuizScorePage } from './QuizScoreView';
+import { QuizScoreView } from './QuizScoreView';
 
 export const QuizContent = ({ quizState, ...otherProps }) =>
 
@@ -10,8 +10,8 @@ export const QuizContent = ({ quizState, ...otherProps }) =>
   {
   (quizState === 'progress' || quizState === 'check') ?
     <QuizQuestionsView {...otherProps}/>
-  : (quizState === 'begin') ? <QuizStartPage {...otherProps}/> 
-  : (quizState === 'end') ? <QuizScorePage {...otherProps}/>
+  : (quizState === 'begin') ? <QuizStartView {...otherProps}/> 
+  : (quizState === 'end') ? <QuizScoreView {...otherProps}/>
   : null
   }
   </div>;
