@@ -11,7 +11,7 @@ export const QuizProgress = ({
 
   <div className="quiz-progress">
     <span>{questionId + 1}</span>
-    &bnsp;/&bnsp; 
+    &nbsp;/&nbsp; 
     <span>{totalQuestions}</span>
   </div>
 
