@@ -62,10 +62,9 @@ export class App extends React.Component {
 
     let score = 0;
 
-    Object.keys(this.state.userAnswers).forEach(key => {
+    this.state.userAnswers.forEach((userAnswer, questionId) => {
 
-        const question = quizData.questions[key];
-        const userAnswer = this.state.userAnswers.get(key);
+        const question = quizData.questions[questionId];
 
         if (question) {
 
