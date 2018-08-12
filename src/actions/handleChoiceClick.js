@@ -1,24 +1,10 @@
 export function handleChoiceClick() {
 
-  return e => {
+  return (questionId, choiceId) => {
 
-    const questionId = e.target.getAttribute('data-questionid');
-    const choice = e.target.getAttribute('value');
-
-    this.setState(prevState => (
-
-        {
-          answers: Object.assign({},
-
-            prevState.answers,
-
-            prevState.answers[questionId] = choice
-          )
-        }
-
-      )
-
-    );
+    this.setState(prevState => ({
+      answers: prevState.answers.set(questionId, choiceId)
+    }));
 
   };
 
