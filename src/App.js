@@ -12,6 +12,7 @@ import { handleNextClick } from './actions/handleNextClick';
 import { handleSubmitClick } from './actions/handleSubmitClick';
 import { handleCheckClick } from './actions/handleCheckClick';
 import { handleChoiceClick } from './actions/handleChoiceClick';
+import { handleExitClick } from './actions/handleExitClick';
 
 const totalQuestions = quizData.questions.length;
 
@@ -32,12 +33,15 @@ export class App extends React.Component {
       userAnswers: new Map()
     };
 
+    this.baseState = this.state;
+
     this.handleStartClick = handleStartClick.bind(this)();
     this.handleBackClick = handleBackClick.bind(this)(quizData);
     this.handleNextClick = handleNextClick.bind(this)(quizData);
     this.handleSubmitClick = handleSubmitClick.bind(this)();
     this.handleCheckClick = handleCheckClick.bind(this)(quizData);
     this.handleChoiceClick = handleChoiceClick.bind(this)();
+    this.handleExitClick = handleExitClick.bind(this)();
 
   }
 
@@ -111,6 +115,7 @@ export class App extends React.Component {
           handleNextClick={this.handleNextClick}
           handleSubmitClick={this.handleSubmitClick}
           handleStartClick={this.handleStartClick}
+          handleExitClick={this.handleExitClick}
           questionState={this.state.questionState}
           quizState={this.state.quizState}
         />

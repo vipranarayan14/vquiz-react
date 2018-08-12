@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 
 export const QuizNav = ({
 
-  quizState,
-  questionState,
-  handleStartClick,
   handleBackClick,
+  handleCheckClick,
+  handleStartClick,
+  handleExitClick,
   handleNextClick,
   handleSubmitClick,
-  handleCheckClick
+  questionState,
+  quizState
 
 }) => {
 
@@ -18,6 +19,7 @@ export const QuizNav = ({
   const next = <button onClick={handleNextClick}>Next</button>;
   const submit = <button onClick={handleSubmitClick}>Submit</button>;
   const check = <button onClick={handleCheckClick}>Check Answers</button>;
+  const exit = <button onClick={handleExitClick}>Exit</button>;
 
   return (
     <div className="quiz-nav">
@@ -25,6 +27,7 @@ export const QuizNav = ({
       { ['progress', 'check'].includes(quizState) && questionState !== 'first' &&  back }
       { ['progress', 'check'].includes(quizState) && questionState !== 'last' &&  next }
       { quizState === 'progress' && questionState === 'last' && submit }
+      { quizState === 'check' && questionState === 'last' && exit }
       { quizState === 'end' && check}
     </div>
   );
@@ -39,5 +42,6 @@ QuizNav.propTypes = {
   handleNextClick: PropTypes.func.isRequired,
   handleSubmitClick: PropTypes.func.isRequired,
   handleCheckClick: PropTypes.func.isRequired,
+  handleExitClick: PropTypes.func.isRequired,
 
 };
