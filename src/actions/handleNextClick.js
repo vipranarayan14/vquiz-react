@@ -8,13 +8,21 @@ export function handleNextClick(quizData) {
 
         const questionId = prevState.questionId + 1;
 
-        return {
+        let nextState = {
 
           questionId,
           question: quizData.questions[questionId].question,
           choices: quizData.questions[questionId].choices
 
+        };
+
+        if (this.state.quizState === 'check') {
+
+          nextState = Object.assign(nextState, { answer: quizData.questions[questionId].answer })
+
         }
+
+        return nextState;
 
       }
 

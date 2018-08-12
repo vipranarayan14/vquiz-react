@@ -22,12 +22,13 @@ export class App extends React.Component {
     super(props);
 
     this.state = {
-      questionId: 0,
-      quizState: 'begin',
-      questionState: '',
-      score: 0,
-      question: quizData.questions[0].question,
+      answer: 0,
       choices: quizData.questions[0].choices,
+      question: quizData.questions[0].question,
+      questionId: 0,
+      questionState: '',
+      quizState: 'begin',
+      score: 0,
       userAnswers: new Map()
     };
 

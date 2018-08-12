@@ -4,17 +4,25 @@ export function handleBackClick(quizData) {
 
     this.setState(prevState => {
 
-      const questionId = prevState.questionId - 1;
-
       if (this.state.questionId !== 0) {
 
-        return {
+        const questionId = prevState.questionId - 1;
+
+        let nextState = {
 
           questionId,
           question: quizData.questions[questionId].question,
           choices: quizData.questions[questionId].choices
 
+        };
+
+        if (this.state.quizState === 'check') {
+
+          nextState = Object.assign(nextState, { answer: quizData.questions[questionId].answer })
+
         }
+
+        return nextState;
 
       }
 

@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export const QuizQuestionsView = ({
+    answer,
     question,
     choices,
     questionId,
     userAnswers,
-    handleChoiceClick
+    handleChoiceClick,
+    showAnswers
   }) =>
 
   <div className="quiz-questions-view">
@@ -35,16 +37,24 @@ export const QuizQuestionsView = ({
       )}
     </div>
 
+    { showAnswers &&
+      <div className="quiz-answer">
+        <p><b>Right Answer:</b> {choices[answer]}</p>
+      </div>
+    }
+
   </div>
 
 ;
 
 QuizQuestionsView.propTypes = {
 
+  answer: PropTypes.number,
   questionId: PropTypes.number.isRequired,
   question: PropTypes.string.isRequired,
   choices: PropTypes.array.isRequired,
   userAnswers: PropTypes.object.isRequired,
   handleChoiceClick: PropTypes.func.isRequired,
+  showAnswers: PropTypes.bool
 
 };

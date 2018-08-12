@@ -6,7 +6,8 @@ export function handleCheckClick(quizData) {
     questionState: 'first',
     questionId: 0,
     question: quizData.questions[0].question,
-    choices: quizData.questions[0].choices
+    choices: quizData.questions[0].choices,
+    answer: quizData.questions[0].answer
 
   });
 
