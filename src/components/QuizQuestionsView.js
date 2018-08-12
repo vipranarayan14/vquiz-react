@@ -5,7 +5,7 @@ export const QuizQuestionsView = ({
     question,
     choices,
     questionId,
-    answers,
+    userAnswers,
     handleChoiceClick
   }) =>
 
@@ -26,7 +26,7 @@ export const QuizQuestionsView = ({
               type="radio" 
               value={index}
               name={`q${questionId}-choice`}
-              defaultChecked={index === answers.get(questionId)}
+              defaultChecked={index === userAnswers.get(questionId)}
               onChange={() => handleChoiceClick(questionId, index)}
             />
             {choice}
@@ -44,7 +44,7 @@ QuizQuestionsView.propTypes = {
   questionId: PropTypes.number.isRequired,
   question: PropTypes.string.isRequired,
   choices: PropTypes.array.isRequired,
-  answers: PropTypes.object.isRequired,
+  userAnswers: PropTypes.object.isRequired,
   handleChoiceClick: PropTypes.func.isRequired,
 
 };

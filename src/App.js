@@ -28,7 +28,7 @@ export class App extends React.Component {
       score: 0,
       question: quizData.questions[0].question,
       choices: quizData.questions[0].choices,
-      answers: new Map()
+      userAnswers: new Map()
     };
 
     this.handleStartClick = handleStartClick.bind(this)();
@@ -62,10 +62,10 @@ export class App extends React.Component {
 
     let score = 0;
 
-    Object.keys(this.state.answers).forEach(key => {
+    Object.keys(this.state.userAnswers).forEach(key => {
 
         const question = quizData.questions[key];
-        const userAnswer = this.state.answers.get(key);
+        const userAnswer = this.state.userAnswers.get(key);
 
         if (question) {
 
