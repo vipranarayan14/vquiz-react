@@ -1,26 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const QuizQuestionsView = props =>
+export const QuizQuestionsView = ({
+    question,
+    choices,
+    questionId,
+    answers,
+    handleChoiceClick
+  }) =>
 
   <div className="quiz-questions-view">
+    
     <div className="quiz-question">
-      <h3>{props.question}</h3>
+      <h3>{question}</h3>
     </div>
 
     <div className="quiz-choices">
-      {props.choices.map((choice, index) => 
+      {choices.map((choice, index) => 
         <div 
           className="quiz-choice"
-          key={`q${props.questionId}-i${index}`}
+          key={`q${questionId}-i${index}`}
         >
           <label>
             <input 
               type="radio" 
               value={index}
-              name={`q${props.questionId}-choice`}
-              defaultChecked={index === Number(props.answers.get(props.questionId))}
-              onChange={() => props.handleChoiceClick(props.questionId, index)}
+              name={`q${questionId}-choice`}
+              defaultChecked={index === answers.get(questionId)}
+              onChange={() => handleChoiceClick(questionId, index)}
             />
             {choice}
           </label>

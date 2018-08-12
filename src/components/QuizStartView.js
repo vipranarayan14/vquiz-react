@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const QuizStartView = props =>
+export const QuizStartView = ({ intro }) =>
 
   <div className="quiz-start-view">
-    <p>{props.intro}</p>
+    <p>{intro}</p>
   </div>
 
 ;

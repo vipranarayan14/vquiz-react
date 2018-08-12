@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const QuizTitle = props => 
+export const QuizTitle = ({ content }) =>
 
-  <h2>{props.content}</h2>;
+  <h2>{content}</h2>;
 
 QuizTitle.propTypes = {
 

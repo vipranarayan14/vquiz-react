@@ -1,21 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const QuizNav = props => {
+export const QuizNav = ({
 
-  const start = <button onClick={props.handleStartClick}>Start</button>;
-  const back = <button onClick={props.handleBackClick}>Back</button>;
-  const next = <button onClick={props.handleNextClick}>Next</button>;
-  const submit = <button onClick={props.handleSubmitClick}>Submit</button>;
-  const check = <button onClick={props.handleCheckClick}>Check Answers</button>;
+  quizState,
+  questionState,
+  handleStartClick,
+  handleBackClick,
+  handleNextClick,
+  handleSubmitClick,
+  handleCheckClick
+
+}) => {
+
+  const start = <button onClick={handleStartClick}>Start</button>;
+  const back = <button onClick={handleBackClick}>Back</button>;
+  const next = <button onClick={handleNextClick}>Next</button>;
+  const submit = <button onClick={handleSubmitClick}>Submit</button>;
+  const check = <button onClick={handleCheckClick}>Check Answers</button>;
 
   return (
     <div className="quiz-nav">
-      { props.quizState === 'begin' &&  start}
-      { ['progress', 'check'].includes(props.quizState) && props.questionState !== 'first' &&  back }
-      { ['progress', 'check'].includes(props.quizState) && props.questionState !== 'last' &&  next }
-      { props.quizState === 'progress' && props.questionState === 'last' && submit }
-      { props.quizState === 'end' && check}
+      { quizState === 'begin' &&  start}
+      { ['progress', 'check'].includes(quizState) && questionState !== 'first' &&  back }
+      { ['progress', 'check'].includes(quizState) && questionState !== 'last' &&  next }
+      { quizState === 'progress' && questionState === 'last' && submit }
+      { quizState === 'end' && check}
     </div>
   );
 };

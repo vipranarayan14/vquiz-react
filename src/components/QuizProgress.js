@@ -1,13 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const QuizProgress = props =>
+export const QuizProgress = ({
+    quizState,
+    questionId,
+    totalQuestions
+  }) =>
 
-  (props.quizState === 'progress' || props.quizState === 'check') &&
+  (quizState === 'progress' || quizState === 'check') &&
 
   <div className="quiz-progress">
-    <span>{props.questionId + 1}</span> / 
-    <span>{props.totalQuestions}</span>
+    <span>{questionId + 1}</span>
+    &bnsp;/&bnsp; 
+    <span>{totalQuestions}</span>
   </div>
 
 ;
