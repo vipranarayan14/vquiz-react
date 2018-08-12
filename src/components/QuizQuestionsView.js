@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export const QuizQuestionsView = props =>
 
-  <div className="quiz-questions-page">
+  <div className="quiz-questions-view">
     <h3>{props.question}</h3>
       <div className="quiz-question">
         {props.choices.map((choice, index) => {
