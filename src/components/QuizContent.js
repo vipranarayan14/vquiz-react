@@ -7,14 +7,15 @@ import { QuizScoreView } from './QuizScoreView';
 export const QuizContent = ({ quizState, ...otherProps }) =>
 
   <div className="quiz-content">
-  {
-  (quizState === 'progress' || quizState === 'check') ?
-    <QuizQuestionsView {...otherProps}/>
-  : (quizState === 'begin') ? <QuizStartView {...otherProps}/> 
-  : (quizState === 'end') ? <QuizScoreView {...otherProps}/>
-  : null
-  }
-  </div>;
+    {
+      {
+        begin: <QuizStartView {...otherProps}/>,
+        end: <QuizScoreView {...otherProps}/>,
+        check: <QuizQuestionsView {...otherProps} showAnswers/>,
+        progress: <QuizQuestionsView {...otherProps}/>
+      }[quizState]
+    }
+  </div>
 
 QuizContent.propTypes = {
 
@@ -24,5 +25,3 @@ QuizContent.propTypes = {
   totalQuestions: PropTypes.number.isRequired
 
 };
-
-
