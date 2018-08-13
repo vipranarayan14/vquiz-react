@@ -16,8 +16,8 @@ export const QuizNav = ({
 }) => {
 
   const start = <button onClick={handleStartClick} className="align-center">Start</button>;
-  const back = <button onClick={handleBackClick} className="align-left">Back</button>;
-  const next = <button onClick={handleNextClick} className="align-right">Next</button>;
+  const back = <button onClick={handleBackClick} className="align-left">&#x21E6; Back</button>;
+  const next = <button onClick={handleNextClick} className="align-right">Next &#x21E8;</button>;
   const submit = <button onClick={handleSubmitClick} className="align-right">Submit</button>;
   const check = <button onClick={handleCheckClick} className="align-center">Check Answers</button>;
   const exit = <button onClick={handleExitClick} className="align-right">Exit</button>;
