@@ -33,7 +33,7 @@ export class App extends React.Component {
       userAnswers: new Map()
     };
 
-    this.baseState = this.state;
+    this.baseState = {...this.state};
 
     this.handleStartClick = handleStartClick.bind(this)();
     this.handleBackClick = handleBackClick.bind(this)(quizData);
