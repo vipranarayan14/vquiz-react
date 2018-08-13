@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './QuizTitle.css';
 
 export const QuizTitle = ({ content }) =>
 
-  <h2>{content}</h2>;
+  <h2 className="QuizTitle">{content}</h2>;
 
 QuizTitle.propTypes = {
 

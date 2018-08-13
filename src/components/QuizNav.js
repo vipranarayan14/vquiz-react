@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './QuizNav.css';
 
 export const QuizNav = ({
 
@@ -14,15 +15,15 @@ export const QuizNav = ({
 
 }) => {
 
-  const start = <button onClick={handleStartClick}>Start</button>;
-  const back = <button onClick={handleBackClick}>Back</button>;
-  const next = <button onClick={handleNextClick}>Next</button>;
-  const submit = <button onClick={handleSubmitClick}>Submit</button>;
-  const check = <button onClick={handleCheckClick}>Check Answers</button>;
-  const exit = <button onClick={handleExitClick}>Exit</button>;
+  const start = <button onClick={handleStartClick} className="align-center">Start</button>;
+  const back = <button onClick={handleBackClick} className="align-left">Back</button>;
+  const next = <button onClick={handleNextClick} className="align-right">Next</button>;
+  const submit = <button onClick={handleSubmitClick} className="align-right">Submit</button>;
+  const check = <button onClick={handleCheckClick} className="align-center">Check Answers</button>;
+  const exit = <button onClick={handleExitClick} className="align-right">Exit</button>;
 
   return (
-    <div className="quiz-nav">
+    <div className="QuizNav">
       { quizState === 'begin' &&  start}
       { ['progress', 'check'].includes(quizState) && questionState !== 'first' &&  back }
       { ['progress', 'check'].includes(quizState) && questionState !== 'last' &&  next }

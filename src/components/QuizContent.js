@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import { QuizStartView } from './QuizStartView';
 import { QuizQuestionsView } from './QuizQuestionsView';
 import { QuizScoreView } from './QuizScoreView';
+import './QuizContent.css';
 
 export const QuizContent = ({ quizState, ...otherProps }) =>
 
-  <div className="quiz-content">
+  <div className="QuizContent">
     {
       {
         begin: <QuizStartView {...otherProps}/>,

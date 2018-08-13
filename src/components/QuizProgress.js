@@ -10,9 +10,7 @@ export const QuizProgress = ({
   (quizState === 'progress' || quizState === 'check') &&
 
   <div className="quiz-progress">
-    <span>{questionId + 1}</span>
-    &nbsp;/&nbsp; 
-    <span>{totalQuestions}</span>
+    <div></div>
   </div>
 
 ;

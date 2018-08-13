@@ -1,47 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './QuizQuestionsView.css';
 
 export const QuizQuestionsView = ({
     answer,
-    question,
     choices,
+    handleChoiceClick,
+    question,
     questionId,
     userAnswers,
-    handleChoiceClick,
-    showAnswers
+    showAnswers,
+    totalQuestions
   }) =>
 
-  <div className="quiz-questions-view">
+  <div className="QuizQuestionsView">
     
     <div className="quiz-question">
+      <span>{questionId + 1} / {totalQuestions}</span>
       <h3>{question}</h3>
     </div>
 
     <div className="quiz-choices">
-      {choices.map((choice, index) => 
+      {choices.map((choice, index) =>
         <div 
-          className="quiz-choice"
+          className={`quiz-choice ${index === userAnswers.get(questionId) ? 'checked' : ''} ${index === answer ? 'right-answer' : ''}`}
           key={`q${questionId}-i${index}`}
         >
           <label>
             <input 
-              type="radio" 
+              type="radio"
               value={index}
               name={`q${questionId}-choice`}
               defaultChecked={index === userAnswers.get(questionId)}
-              onChange={() => handleChoiceClick(questionId, index)}
+              disabled={showAnswers}
+              onClick={() => handleChoiceClick(questionId, index)}
             />
             {choice}
           </label>
         </div>
       )}
     </div>
-
-    { showAnswers &&
-      <div className="quiz-answer">
-        <p><b>Right Answer:</b> {choices[answer]}</p>
-      </div>
-    }
 
   </div>
 
@@ -50,11 +48,12 @@ export const QuizQuestionsView = ({
 QuizQuestionsView.propTypes = {
 
   answer: PropTypes.number,
+  choices: PropTypes.array.isRequired,
+  handleChoiceClick: PropTypes.func.isRequired,
   questionId: PropTypes.number.isRequired,
   question: PropTypes.string.isRequired,
-  choices: PropTypes.array.isRequired,
   userAnswers: PropTypes.object.isRequired,
-  handleChoiceClick: PropTypes.func.isRequired,
-  showAnswers: PropTypes.bool
+  showAnswers: PropTypes.bool,
+  totalQuestions: PropTypes.number.isRequired
 
 };

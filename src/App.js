@@ -1,5 +1,6 @@
 import React from 'react';
 import './index.css';
+import './App.css';
 
 import { quizData } from './questions';
 import { QuizTitle } from './components/QuizTitle';
@@ -23,7 +24,7 @@ export class App extends React.Component {
     super(props);
 
     this.state = {
-      answer: 0,
+      answer: -1,
       choices: quizData.questions[0].choices,
       question: quizData.questions[0].question,
       questionId: 0,
@@ -33,7 +34,7 @@ export class App extends React.Component {
       userAnswers: new Map()
     };
 
-    this.baseState = {...this.state};
+    this.baseState = { ...this.state };
 
     this.handleStartClick = handleStartClick.bind(this)();
     this.handleBackClick = handleBackClick.bind(this)(quizData);
@@ -90,36 +91,40 @@ export class App extends React.Component {
   render() {
 
     return (
-      <main>
+      <main className="App">
 
         <h1>A Quiz</h1>
         
-        <QuizTitle content={quizData.title}/>
+        <div className="QuizContainer">
 
-        <QuizProgress
-          questionId={this.state.questionId}
-          quizState={this.state.quizState}
-          totalQuestions={totalQuestions}
-        />
+          <QuizTitle content={quizData.title}/>
 
-        <QuizContent 
-          handleChoiceClick={this.handleChoiceClick}
-          intro={quizData.intro}
-          totalQuestions={totalQuestions}
-          {...this.state}
-        />
+          <QuizProgress
+            questionId={this.state.questionId}
+            quizState={this.state.quizState}
+            totalQuestions={totalQuestions}
+          />
 
-        <QuizNav 
-          handleBackClick={this.handleBackClick}
-          handleCheckClick={this.handleCheckClick}
-          handleNextClick={this.handleNextClick}
-          handleSubmitClick={this.handleSubmitClick}
-          handleStartClick={this.handleStartClick}
-          handleExitClick={this.handleExitClick}
-          questionState={this.state.questionState}
-          quizState={this.state.quizState}
-        />
+          <QuizContent 
+            handleChoiceClick={this.handleChoiceClick}
+            intro={quizData.intro}
+            totalQuestions={totalQuestions}
+            {...this.state}
+          />
 
+          <QuizNav 
+            handleBackClick={this.handleBackClick}
+            handleCheckClick={this.handleCheckClick}
+            handleNextClick={this.handleNextClick}
+            handleSubmitClick={this.handleSubmitClick}
+            handleStartClick={this.handleStartClick}
+            handleExitClick={this.handleExitClick}
+            questionState={this.state.questionState}
+            quizState={this.state.quizState}
+          />
+        
+        </div>
+        
       </main>
     );
 
