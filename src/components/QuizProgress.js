@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './QuizProgress.css';
 
 export const QuizProgress = ({
     quizState,
@@ -9,8 +10,8 @@ export const QuizProgress = ({
 
   (quizState === 'progress' || quizState === 'check') &&
 
-  <div className="quiz-progress">
-    <div></div>
+  <div className="QuizProgress">
+    <div style={{width: `${((questionId + 1) / totalQuestions) * 100}%`}}></div>
   </div>
 
 ;
