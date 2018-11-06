@@ -2,7 +2,7 @@ import React from 'react';
 import './index.css';
 import './App.css';
 
-import { quizData } from './questions';
+import { quizData } from './data/quiz-data';
 import { QuizTitle } from './components/QuizTitle';
 import { QuizProgress } from './components/QuizProgress';
 import { QuizContent } from './components/QuizContent';
@@ -94,7 +94,7 @@ export class App extends React.Component {
       <main className="App">
 
         <h1>A Quiz</h1>
-        
+
         <div className="QuizContainer">
 
           <QuizTitle content={quizData.title}/>
@@ -105,14 +105,14 @@ export class App extends React.Component {
             totalQuestions={totalQuestions}
           />
 
-          <QuizContent 
+          <QuizContent
             handleChoiceClick={this.handleChoiceClick}
             intro={quizData.intro}
             totalQuestions={totalQuestions}
             {...this.state}
           />
 
-          <QuizNav 
+          <QuizNav
             handleBackClick={this.handleBackClick}
             handleCheckClick={this.handleCheckClick}
             handleNextClick={this.handleNextClick}
@@ -122,9 +122,9 @@ export class App extends React.Component {
             questionState={this.state.questionState}
             quizState={this.state.quizState}
           />
-        
+
         </div>
-        
+
       </main>
     );
 
